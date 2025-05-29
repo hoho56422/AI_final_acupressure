@@ -1,0 +1,110 @@
+{
+    "合谷穴": {
+      "location": "虎口處，拇指與食指骨交會處",
+      "image_url": "acupoint/hegu.png"
+    },
+    "外關": {
+      "location": "前臂背側，腕橫紋上兩寸處",
+      "image_url": "acupoint/外關.png"
+    },
+    "承山": {
+      "location": "小腿後側正中線上，腓腸肌分叉處",
+      "image_url": "acupoint/承山.png"
+    },
+    "足三里": {
+      "location": "膝蓋下三寸，脛骨外側凹陷處",
+      "image_url": "acupoint/足三里.png"
+    },
+    "崑崙": {
+      "location": "腳踝外側，腓骨肌腱與跟腱之間",
+      "image_url": "acupoint/崑崙.png"
+    },
+    "太溪": {
+      "location": "腳踝內側，跟腱與內踝尖之間",
+      "image_url": "acupoint/太溪.png"
+    },
+    "太白": {
+      "location": "腳背，大拇指與食指骨交會處",
+      "image_url": "acupoint/太白.png"
+    },
+    "照海": {
+      "location": "腳背，大拇指與食指骨交會處",
+      "image_url": "acupoint/照海.png"
+    },
+    "太淵": {
+      "location": "手腕橫紋上，拇指根部",
+      "image_url": "acupoint/太淵.png"
+    },
+    "太衝": {
+      "location": "位於足背，第1、2趾之間，趾蹼緣後方赤白肉際處",
+      "image_url": "acupoint/太衝.png"
+    },
+    "行間": {
+      "location": "腳背，大拇指與食指骨交會處",
+    "image_url": "acupoint/行間.png"
+    },
+    "血海": {
+      "location": "位於大腿內側，髕底內側端上2寸，股四頭肌內側頭的隆起處",
+      "image_url": "acupoint/血海.png"
+    },
+    "列缺": {
+      "location": "位於前臂橈側，腕橫紋上1.5寸，拇長展肌腱與橈骨之間",
+      "image_url": "acupoint/列缺.png"
+    },
+    "陰陵泉": {
+      "location": "位於小腿內側，脛骨內側髁下方凹陷處",
+      "image_url": "acupoint/陰陵泉.png"
+    },
+    "陽陵泉": {
+      "location": "位於小腿外側，腓骨小頭前下方凹陷處",
+      "image_url": "acupoint/陽陵泉.png"
+    },
+    "神門": {
+      "location": "位於腕部，腕橫紋尺側端，尺側腕屈肌腱的橈側凹陷處",
+      "image_url": "acupoint/神門.png"
+    },
+    "少海": {
+      "location": "位於肘部，當尺骨鷹嘴與肱骨內上髁之間凹陷處",
+      "image_url": "acupoint/少海.png"
+    },
+    "俠溪": {
+      "location": "位於足背，第4、5趾之間，趾蹼緣後方赤白肉際處",
+      "image_url": "acupoint/俠溪.png"
+    },
+    "曲池": {
+      "location": "位於肘部，屈肘時，肘橫紋外側端",
+      "image_url": "acupoint/曲池.png"
+    },
+    "內關": {
+      "location": "位於前臂掌側，腕橫紋上2寸，兩筋之間",
+      "image_url": "acupoint/內關.png"
+    },
+    "後谿": {
+      "location": "位於手掌尺側，第5掌指關節後方赤白肉際處",
+      "image_url": "acupoint/後谿.png"
+    },
+    "公孫": {
+      "location": "位於足內側，第1跖骨基底部的前下方，赤白肉際處",
+      "image_url": "acupoint/公孫.png"
+    },
+    "委中": {
+      "location": "位於膝後區，膝窩橫紋中點",
+      "image_url": "acupoint/委中.png"
+    },
+    "丘墟": {
+      "location": "位於足外踝前下方，當外踝尖與第5跖骨基底部連線的中點凹陷處",
+      "image_url": "acupoint/丘墟.png"
+    },
+    "三陰交": {
+      "location": "位於小腿內側，內踝尖上3寸，脛骨內側緣後方",
+      "image_url": "acupoint/三陰交.png"
+    },
+    "足通谷": {
+      "location": "位於足背，第5跖趾關節後方凹陷處",
+      "image_url": "acupoint/足通谷.png"
+    },
+    "迎香": {
+      "location": "位於面部，鼻翼外緣中點旁，鼻唇溝中",
+      "image_url": "acupoint/迎香.png"
+    }
+}
