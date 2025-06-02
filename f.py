@@ -1,6 +1,22 @@
 import cv2
 import math
 import mediapipe as mp
+import numpy as np
+from PIL import ImageFont, ImageDraw, Image
+
+def put_chinese_text(img, text, position, font_size=32, color=(0, 0, 255), font_path=None):
+    img_pil = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    draw = ImageDraw.Draw(img_pil)
+    font_path = "/System/Library/Fonts/STHeiti Medium.ttc"
+
+    if font_path is None:
+        font_path = "/System/Library/Fonts/STHeiti Light.ttc"  # macOS
+        # font_path = "C:/Windows/Fonts/msjh.ttc"
+    font = ImageFont.truetype(font_path, font_size)
+    draw.text(position, text, font=font, fill=color[::-1])  
+
+    # 轉回OpenCV
+    return cv2.cvtColor(np.array(img_pil), cv2.COLOR_RGB2BGR)
 
 # 初始化 MediaPipe 模組
 mp_hands = mp.solutions.hands
@@ -45,8 +61,8 @@ def hegu(frame, lm, shape):
     y += dy
 
     cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '合谷', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-    cv2.line(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
+    cv2.putText(frame, 'hegu', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    
 
 
 def taiyuan(frame, lm, shape):
@@ -64,7 +80,7 @@ def taiyuan(frame, lm, shape):
     cy = y + 30  # 向下
 
     cv2.circle(frame, (cx, cy), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '太淵', (cx + 10, cy - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'taiyuan', (cx + 10, cy - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def neiguan(frame, lm, shape):
@@ -84,7 +100,7 @@ def neiguan(frame, lm, shape):
     y = int(y0 + unit_dy * extend_length)
 
     cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '內關', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'neiguan', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def lieque(frame, lm, shape):
@@ -116,7 +132,7 @@ def lieque(frame, lm, shape):
     cy = int(y0 + unit_dy * along_length + perp_dy * perp_offset)
 
     cv2.circle(frame, (cx, cy), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '列缺', (cx + 10, cy - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'lieque', (cx + 10, cy - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def shenmen(frame, lm, shape):
@@ -137,7 +153,7 @@ def shenmen(frame, lm, shape):
     y = int(y0 + unit_dy * offset)
 
     cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '神門', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'shenmen', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def waiguan(frame, lm, shape):
@@ -157,7 +173,7 @@ def waiguan(frame, lm, shape):
     y = int(y0 + unit_dy * extend_length)
 
     cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '外關', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'waiguan', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def houxi(frame, lm, shape):
@@ -191,14 +207,14 @@ def houxi(frame, lm, shape):
     y = int(y17 + unit_dy * offset_along + perp_dy * offset_side)
 
     cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '後谿', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'houxi', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def taibai(frame, lm, shape):
     x1, y1 = get_point(lm, shape, 2)  
    
     cv2.circle(frame, (x1, y1+25), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '太白', (x1 + 10, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'taibai', (x1 + 10, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def taichong(frame, lm, shape):
@@ -221,14 +237,14 @@ def taichong(frame, lm, shape):
 
     # 畫圖
     cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '太衝', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'taichong', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def gongsun(frame, lm, shape):
     x1, y1 = get_point(lm, shape, 2)  
    
     cv2.circle(frame, (x1, y1+40), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '公孫', (x1 + 10, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'gongsun', (x1 + 10, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def hanjian(frame, lm, shape):
@@ -251,7 +267,7 @@ def hanjian(frame, lm, shape):
 
     # 畫圖
     cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '行間', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'hanjian', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def xiaxi(frame, lm, shape):
@@ -262,7 +278,7 @@ def xiaxi(frame, lm, shape):
     x, y = (x1 + x2) // 2, (y1 + y2) // 2
     # 畫圖
     cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '俠溪', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'xiaxi', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 
 def zutonggu(frame, lm, shape):
@@ -278,13 +294,13 @@ def zutonggu(frame, lm, shape):
 
     # 畫圖
     cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '足通谷', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+    cv2.putText(frame, 'zutonggu', (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 # ==== 腳部穴位（支援左右） ====
 def taixi(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, lm_id in [('太溪 (左)', mp_holistic.PoseLandmark.LEFT_ANKLE),
-                               ('太溪 (右)', mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
+    for label, lm_id in [('taixi (l)', mp_holistic.PoseLandmark.LEFT_ANKLE),
+                               ('taixi (r)', mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
         lm = landmarks[lm_id]
         x, y = int(lm.x * w + 10), int(lm.y * h)
         cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
@@ -292,8 +308,8 @@ def taixi(frame, landmarks, shape):
 
 def kunlun(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, lm_id in [('崑崙 (左)', mp_holistic.PoseLandmark.LEFT_HEEL),
-                               ('崑崙 (右)', mp_holistic.PoseLandmark.RIGHT_HEEL)]:
+    for label, lm_id in [('kunlun (l)', mp_holistic.PoseLandmark.LEFT_HEEL),
+                               ('kunlun (r)', mp_holistic.PoseLandmark.RIGHT_HEEL)]:
         lm = landmarks[lm_id]
         x, y = int(lm.x * w + 5), int(lm.y * h + 10)
         cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
@@ -301,8 +317,8 @@ def kunlun(frame, landmarks, shape):
 
 def qiuxu(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, lm_id in [('丘墟 (左)', mp_holistic.PoseLandmark.LEFT_ANKLE),
-                               ('丘墟 (右)', mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
+    for label, lm_id in [('qiuxu (l)', mp_holistic.PoseLandmark.LEFT_ANKLE),
+                               ('qiuxu (r)', mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
         lm = landmarks[lm_id]
         x, y = int(lm.x * w + 20), int(lm.y * h - 10)
         cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
@@ -310,8 +326,8 @@ def qiuxu(frame, landmarks, shape):
 
 def xuehai(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, lm_id in [('血海 (左)', mp_holistic.PoseLandmark.LEFT_KNEE),
-                               ('血海 (右)', mp_holistic.PoseLandmark.RIGHT_KNEE)]:
+    for label, lm_id in [('xuehai (l)', mp_holistic.PoseLandmark.LEFT_KNEE),
+                               ('xuehai (r)', mp_holistic.PoseLandmark.RIGHT_KNEE)]:
         lm = landmarks[lm_id]
         x, y = int(lm.x * w - 30), int(lm.y * h - 30)
         cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
@@ -319,8 +335,8 @@ def xuehai(frame, landmarks, shape):
 
 def zhaohai(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, lm_id in [('照海 (左)', mp_holistic.PoseLandmark.LEFT_ANKLE),
-                               ('照海 (右)', mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
+    for label, lm_id in [('zhaohai (l)', mp_holistic.PoseLandmark.LEFT_ANKLE),
+                               ('zhaohai (r)', mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
         lm = landmarks[lm_id]
         x, y = int(lm.x * w - 10), int(lm.y * h + 15)
         cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
@@ -328,9 +344,9 @@ def zhaohai(frame, landmarks, shape):
 
 def chengshan(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, k_id, a_id in [
-        ('承山 (左)', mp_holistic.PoseLandmark.LEFT_KNEE, mp_holistic.PoseLandmark.LEFT_ANKLE),
-        ('承山 (右)', mp_holistic.PoseLandmark.RIGHT_KNEE, mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
+    for label, k_id, a_id in [
+        ('chengshan (l)', mp_holistic.PoseLandmark.LEFT_KNEE, mp_holistic.PoseLandmark.LEFT_ANKLE),
+        ('chengshan (r)', mp_holistic.PoseLandmark.RIGHT_KNEE, mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
         knee = landmarks[k_id]
         ankle = landmarks[a_id]
         x = int((knee.x + ankle.x) / 2 * w)
@@ -340,8 +356,8 @@ def chengshan(frame, landmarks, shape):
 
 def shaohai(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, lm_id in [('少海 (左)', mp_holistic.PoseLandmark.LEFT_ELBOW),
-                               ('少海 (右)', mp_holistic.PoseLandmark.RIGHT_ELBOW)]:
+    for label, lm_id in [('shaohai (l)', mp_holistic.PoseLandmark.LEFT_ELBOW),
+                               ('shaohai (r)', mp_holistic.PoseLandmark.RIGHT_ELBOW)]:
         lm = landmarks[lm_id]
         x, y = int(lm.x * w - 15), int(lm.y * h)
         cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
@@ -349,9 +365,9 @@ def shaohai(frame, landmarks, shape):
 
 def zusanli(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, k_id, a_id in [
-        ('足三里 (左)', mp_holistic.PoseLandmark.LEFT_KNEE, mp_holistic.PoseLandmark.LEFT_ANKLE),
-        ('足三里 (右)', mp_holistic.PoseLandmark.RIGHT_KNEE, mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
+    for label, k_id, a_id in [
+        ('zusanli (l)', mp_holistic.PoseLandmark.LEFT_KNEE, mp_holistic.PoseLandmark.LEFT_ANKLE),
+        ('zusanli (r)', mp_holistic.PoseLandmark.RIGHT_KNEE, mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
         knee = landmarks[k_id]
         ankle = landmarks[a_id]
         x = int((knee.x * 0.7 + ankle.x * 0.3) * w)
@@ -361,8 +377,8 @@ def zusanli(frame, landmarks, shape):
 
 def sanyinjiao(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, lm_id in [('三陰交 (左)', mp_holistic.PoseLandmark.LEFT_ANKLE),
-                               ('三陰交 (右)', mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
+    for label, lm_id in [('sanyinjiao (l)', mp_holistic.PoseLandmark.LEFT_ANKLE),
+                               ('sanyinjiao (r)', mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
         lm = landmarks[lm_id]
         x = int(lm.x * w)
         y = int(lm.y * h - 50)
@@ -371,9 +387,9 @@ def sanyinjiao(frame, landmarks, shape):
 
 def yinlingquan(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, lm_id in [('陰陵泉 (左)', mp_holistic.PoseLandmark.LEFT_KNEE),
-                               ('陰陵泉 (右)', mp_holistic.PoseLandmark.RIGHT_KNEE)]:
-        lm = face_landmarks[idx]
+    for label, lm_id in [('yinlingquan (l)', mp_holistic.PoseLandmark.LEFT_KNEE),
+                               ('yinlingquan (r)', mp_holistic.PoseLandmark.RIGHT_KNEE)]:
+        lm = landmarks[lm_id]
         x = int(lm.x * w - 20)
         y = int(lm.y * h + 10)
         cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
@@ -381,8 +397,8 @@ def yinlingquan(frame, landmarks, shape):
 
 def yanglingquan(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, lm_id in [('陽陵泉 (左)', mp_holistic.PoseLandmark.LEFT_KNEE),
-                               ('陽陵泉 (右)', mp_holistic.PoseLandmark.RIGHT_KNEE)]:
+    for label, lm_id in [('yanglingquan (l)', mp_holistic.PoseLandmark.LEFT_KNEE),
+                               ('yanglingquan (r)', mp_holistic.PoseLandmark.RIGHT_KNEE)]:
         lm = landmarks[lm_id]
         x = int(lm.x * w + 20)
         y = int(lm.y * h + 10)
@@ -391,9 +407,9 @@ def yanglingquan(frame, landmarks, shape):
 
 def weizhong(frame, landmarks, shape):
     h, w = shape[:2]
-    for side, label, k_id, a_id in [
-        ('委中 (左)', mp_holistic.PoseLandmark.LEFT_KNEE, mp_holistic.PoseLandmark.LEFT_ANKLE),
-        ('委中 (右)', mp_holistic.PoseLandmark.RIGHT_KNEE, mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
+    for label, k_id, a_id in [
+        ('weizhong (l)', mp_holistic.PoseLandmark.LEFT_KNEE, mp_holistic.PoseLandmark.LEFT_ANKLE),
+        ('weizhong (r)', mp_holistic.PoseLandmark.RIGHT_KNEE, mp_holistic.PoseLandmark.RIGHT_ANKLE)]:
         knee = landmarks[k_id]
         ankle = landmarks[a_id]
         x = int((knee.x + ankle.x) / 2 * w)
@@ -415,18 +431,18 @@ def yingxiang(frame, landmarks, shape):
     x_left = nose_x - offset_x
     y_left = nose_y + offset_y
     cv2.circle(frame, (x_left, y_left), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '迎香 (左)', (x_left + 10, y_left - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+    cv2.putText(frame, 'yingxiang (l)', (x_left + 10, y_left - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
 
     # 右迎香（
     x_right = nose_x + offset_x
     y_right = nose_y + offset_y
     cv2.circle(frame, (x_right, y_right), 10, (0, 0, 255), -1)
-    cv2.putText(frame, '迎香 (右)', (x_right + 10, y_right - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+    cv2.putText(frame, 'yingxiang (r)', (x_right + 10, y_right - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
 
 def quchi(frame, landmarks, shape):
     h, w = shape[:2]
-    for name, idx in [('曲池 (左)', mp_holistic.PoseLandmark.LEFT_ELBOW),
-                      ('曲池 (右)', mp_holistic.PoseLandmark.RIGHT_ELBOW)]:
+    for name, idx in [('quchi (l)', mp_holistic.PoseLandmark.LEFT_ELBOW),
+                      ('quchi (r)', mp_holistic.PoseLandmark.RIGHT_ELBOW)]:
         lm = landmarks[idx]
         x, y = int(lm.x * w + 10), int(lm.y * h - 10)
         cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
@@ -435,14 +451,14 @@ def quchi(frame, landmarks, shape):
 def shaohai(frame, landmarks, shape):
     h, w = shape[:2]
     for name, idx, x_offset in [
-        ('少海 (左)', mp_holistic.PoseLandmark.LEFT_ELBOW, -10),
-        ('少海 (右)', mp_holistic.PoseLandmark.RIGHT_ELBOW, 10)
+        ('shaohai (l)', mp_holistic.PoseLandmark.LEFT_ELBOW, -10),
+        ('shaohai (r)', mp_holistic.PoseLandmark.RIGHT_ELBOW, 10)
     ]:
         lm = landmarks[idx]
         x = int(lm.x * w + x_offset)
         y = int(lm.y * h - 10)  
         cv2.circle(frame, (x, y), 10, (0, 0, 255), -1)
-        cv2.putText(frame, name, (x + 10, y - 10),cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
+        cv2.putText(frame, name, (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
 
 
 # 穴位對應表
