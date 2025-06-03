@@ -26,7 +26,7 @@ These discomforts inspired us to develop an AI agent that:
 ```
 git clone https://github.com/hoho56422/AI_final_acupressure.git
 ```
-2. download trained model in pages\trained_model\download_url.txt, and put the downloaded files under trained_model/ folder
+2. Download trained model in `pages\trained_model\download_url.txt`, and put the downloaded files under `trained_model/` folder
 3. Make sure all the packages in `requirement.txt` are downloaded in your environment.
    For your reference, this system is ran under Python 3.11.7, but it should be able to run under any environment
 4. Run `home.py` by typing
